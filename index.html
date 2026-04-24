@@ -49,7 +49,7 @@
         </div>
     </div>
     <div class="header-middle-green"></div>
-    
+
     <nav class="nav-bar-main">
         <div class="container">
             <ul class="nav justify-content-center">
@@ -90,6 +90,28 @@
     
     document.getElementById('whatsappIcon').addEventListener('click', function() {
         alert('Redirecting to WhatsApp Chat...');
+    });
+    const dots = document.querySelectorAll('.dot');
+    const heroSection = document.querySelector('.hero-banner');
+
+    // List of your images - Ensure these names match what's in your /images folder!
+    const images = [
+        'images/signature.webp', 
+        'images/ready-to-wear.webp', 
+        'images/coord-sets.webp',
+        'images/pret.webp',
+        'images/sale.webp'
+    ];
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            // Remove 'active' class from all dots
+            dots.forEach(d => d.classList.remove('active'));
+            // Add 'active' class to the clicked dot
+            dot.classList.add('active');
+            // Change the background image of the hero section
+            heroSection.style.backgroundImage = `url('${images[index]}')`;
+        });
     });
 </script>
 
