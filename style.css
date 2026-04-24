@@ -1,188 +1,133 @@
-/* --- Global Styles --- */
-body {
-    margin: 0;
-    padding-top: 130px; /* Offset for fixed header */
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #ffffff;
-}
-
+/* Core Styling */
 :root {
-    --lime-color: #90EE90;
-    --light-color: #f7f7f7;
-    --black: #000000;
+    --dom-blue: #006491;
+    --dom-red: #E31837;
+    --dom-dark-blue: #00557a;
 }
 
-/* --- Header Section --- */
-.fixed-top {
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
 }
 
-.top-black-bar {
-    background-color: var(--black);
-    padding: 15px 0;
-}
-.header-middle-green {
-    background-color: var(--lime-green);
-    height: 4px; /* Thin professional bar like the original */
-    width: 100%;
-}
+.fw-black { font-weight: 900; }
+.italic { font-style: italic; }
 
-/* Custom Styled Logo */
-.main-logo {
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: 6px;
-    margin: 0;
-}
-
-.main-logo .lime { color: var(--lime-color); }
-.main-logo .light { color: var(--light-color); }
-
-/* Icons in Header */
-.header-icon {
-    color: white;
-    font-size: 1.1rem;
-    text-decoration: none;
-    transition: color 0.3s;
-    cursor: pointer;
-}
-
-.header-icon:hover {
-    color: var(--lime-color);
-}
-
-.badge-count {
-    font-size: 9px;
-    background: #e31e24;
-    color: white;
-    padding: 2px 5px;
-    border-radius: 50%;
-    position: absolute;
-    top: -10px;
-    right: -8px;
-}
-
-/* --- Navigation --- */
-.nav-bar-main {
-    background-color: var(--black);
-    padding: 10px 0;
-    border-top: 1px solid #222;
+/* Navbar Improvements */
+.navbar-brand img {
+    height: 40px;
+    width: auto;
 }
 
 .nav-link {
-    color: #ffffff !important;
-    font-size: 13px;
-    letter-spacing: 1.5px;
-    font-weight: 400;
+    color: #333 !important;
+    font-size: 0.9rem;
 }
 
-.nav-link:hover {
-    color: var(--lime-color) !important;
-}
+.text-primary { color: var(--dom-blue) !important; }
 
-.sale-link {
-    color: #ff4d4d !important;
-    font-weight: bold;
-}
-
-/* --- Hero Banner Section --- */
-.hero-content {
-    max-width: 1200px; /* This keeps the text from going "out of range" */
-    margin: 0 auto;    /* Centers the text block */
-    padding: 0 50px;   /* Adds a safety gap at the edges */
-    width: 100%;
-}
-
-.hero-banner {
-    display: flex;
-    align-items: center; /* Centers text vertically */
-    justify-content: center;
-}
-.hero-image-container {
-    width: 100%;
-    height: 100%;
-    /* LINK TO YOUR IMAGE HERE */
-    background-image: url('images/image1.png.webp'); 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 30px;
-}
-
-/* Pagination Dots Styling */
-.dot-navigation {
-    display: flex;
-    gap: 8px;
-}
-
-.dot {
-    width: 10px;
-    height: 10px;
-    background-color: rgba(255, 255, 255, 0.4);
-    border: 1.5px solid #fff;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.dot.active {
+/* The Delivery/Pick Up Toggle - Key Feature */
+.order-toggle-container {
     background-color: #fff;
 }
 
-/* UNSTITCHED Text Styling */
-.section-heading {
-    font-size: 2.5rem;
-    font-weight: 300;
-    letter-spacing: 5px;
-    color: #000;
-    margin-top: 40px;
+.toggle-switch {
+    background-color: var(--dom-blue);
+    border-radius: 50px;
+    position: relative;
+    padding: 5px;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
 }
 
-/* HERE IS WHERE YOU PUT YOUR SPECIFIC IMAGE */
-.signature-slide {
-    /* Step 3: Change this placeholder URL to your actual image path: url('../images/hero-signature.jpg') */
-    background-image: url('https://via.placeholder.com/1920x1080?text=Signature+Placeholder');
+.toggle-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: white;
+    padding: 12px 0;
+    font-weight: 800;
+    font-size: 1.1rem;
+    border-radius: 40px;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.toggle-btn.active {
+    background-color: #fff;
+    color: var(--dom-blue);
+}
+
+/* Specific button colors for the "Delivery" or "Pick Up" theme */
+.toggle-btn.delivery.active {
+    background-color: var(--dom-blue);
+    color: #fff;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
+
+/* Making it look exactly like the screenshot */
+.toggle-switch {
+    background: linear-gradient(to right, var(--dom-blue) 48%, #fff 48%, #fff 52%, var(--dom-red) 52%);
+    padding: 0;
+    overflow: hidden;
+    height: 55px;
+}
+
+.toggle-or {
+    background: white;
+    color: #333;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.7rem;
+    border: 2px solid #ddd;
+    z-index: 10;
+    margin: 0 -20px; /* Overlap the buttons */
+}
+
+.delivery { background-color: var(--dom-blue); border-radius: 0; }
+.pickup { background-color: var(--dom-red); border-radius: 0; }
+
+/* Tiles System */
+.promo-tile {
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-}
-
-/* --- Dot Interval Navigation --- */
-.dot-container {
-    position: absolute;
-    bottom: 20px; /* Position dots from the bottom */
-    width: 100%;
-    text-align: center;
-    z-index: 10;
-}
-
-.nav-dot {
-    display: inline-block;
-    width: 10px; /* Exact size from picture */
-    height: 10px;
-    margin: 0 5px; /* Spacing between dots */
-    background-color: rgba(0, 0, 0, 0.4); /* Dim, transparent gray */
-    border: 2px solid white; /* Essential white border */
-    border-radius: 50%; /* Make them perfect circles */
+    position: relative;
+    min-height: 250px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: transform 0.2s;
 }
 
-/* Activating the first dot (Signature) */
-.nav-dot.active {
-    background-color: white; /* Bright white when active */
+.promo-tile:hover {
+    transform: scale(1.01);
 }
 
-.nav-dot:hover {
-    transform: scale(1.2);
-    background-color: white;
+.large-tile {
+    height: 100%;
+    min-height: 520px;
 }
 
-/* Main page title 'UNSTITCHED' */
-.section-title {
-    letter-spacing: 8px;
-    font-weight: 300;
+.medium-tile {
+    height: 250px;
+}
+
+.tile-overlay {
+    background: linear-gradient(to right, rgba(0,0,0,0.4), transparent);
+    height: 100%;
+    border-radius: 8px;
+}
+
+/* Pill styles inside tiles */
+.deals-pills strong {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .large-tile { min-height: 350px; }
+    .toggle-btn { font-size: 0.9rem; }
 }

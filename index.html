@@ -3,117 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Limelight | Official Online Store</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <title>Domino's Pizza Pakistan | Delivery & Carryout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="fixed-top">
-    <div class="top-black-bar">
-        <div class="container-fluid px-5">
-            <div class="row align-items-center">
-                
-                <div class="col-4 d-flex align-items-center">
-                    <a href="javascript:void(0)" class="header-icon" id="phoneIcon">
-                        <i class="fa-solid fa-phone"></i>
-                    </a>
-                    <a href="javascript:void(0)" class="header-icon ms-3" id="whatsappIcon">
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom py-3">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Domino%27s_pizza_logo.svg" alt="Domino's" width="150">
+            </a>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav fw-bold text-uppercase">
+                    <li class="nav-item"><a class="nav-link mx-2" href="#">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link mx-2" href="#">Stores</a></li>
+                    <li class="nav-item"><a class="nav-link mx-2" href="#">Get the App</a></li>
+                </ul>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="cart-icon me-4 position-relative">
+                    <i class="fa-solid fa-cart-shopping fs-4 text-primary"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
                 </div>
-
-                <div class="col-4 text-center">
-                    <h1 class="main-logo">
-                        <span class="lime">LIME</span><span class="light">LIGHT</span>
-                    </h1>
-                </div>
-
-                <div class="col-4 text-end">
-                    <a href="javascript:void(0)" class="header-icon me-4" onclick="alert('Redirecting to Search...')">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </a>
-                    <a href="javascript:void(0)" class="header-icon me-4" onclick="alert('Redirecting to Account...')">
-                        <i class="fa-regular fa-user"></i>
-                    </a>
-                    <a href="javascript:void(0)" class="header-icon position-relative" onclick="alert('Redirecting to Shopping Bag...')">
-                        <i class="fa-solid fa-bag-shopping"></i>
-                        <span class="badge-count">1</span>
-                    </a>
+                <div class="user-account fw-bold text-uppercase d-none d-md-block">
+                    <i class="fa-regular fa-circle-user fs-4 me-1 align-middle"></i> My Account
                 </div>
             </div>
         </div>
-    </div>
-    <div class="header-middle-green"></div>
-
-    <nav class="nav-bar-main">
-        <div class="container">
-            <ul class="nav justify-content-center">
-                <li class="nav-item"><a class="nav-link" href="#">WOMEN</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">GIRLS</a></li>
-                <li class="nav-item"><a class="nav-link sale-link" href="#">SALE</a></li>
-            </ul>
-        </div>
     </nav>
-</header>
 
-<section class="hero-banner">
-    <div class="hero-image-container">
-        <div class="dot-navigation">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
+    <div class="order-toggle-container py-3">
+        <div class="container d-flex justify-content-center">
+            <div class="toggle-switch d-flex align-items-center">
+                <button class="toggle-btn delivery active" onclick="toggleOrder('delivery')">
+                    <i class="fa-solid fa-motorcycle me-2"></i> DELIVERY
+                </button>
+                <div class="toggle-or">OR</div>
+                <button class="toggle-btn pickup" onclick="toggleOrder('pickup')">
+                    <i class="fa-solid fa-store me-2"></i> PICK UP
+                </button>
+            </div>
         </div>
     </div>
-</section>
 
-<div class="container-fluid text-center mt-5">
-    <h2 class="section-heading">UNSTITCHED</h2>
-</div>
+    <main class="container-fluid px-md-4 py-4">
+        <div class="row g-3">
+            <div class="col-lg-6 col-md-12">
+                <div class="promo-tile large-tile rounded-3 shadow-sm" style="background-image: url('https://images.unsplash.com/photo-1593504049359-74330189a355?q=80&w=1200');">
+                    <div class="tile-overlay p-4">
+                        <h2 class="display-5 fw-black text-white italic">NEW <br> <span class="text-danger">STUFFED</span></h2>
+                    </div>
+                </div>
+            </div>
 
-<main class="container text-center my-5">
-    <h2 class="section-title">UNSTITCHED</h2>
-    <hr class="mx-auto" style="width: 60px; border-top: 2px solid #000;">
-</main>
+            <div class="col-lg-6 col-md-12">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="promo-tile medium-tile rounded-3 shadow-sm" style="background-image: url('https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?q=80&w=1200');">
+                            <div class="tile-overlay p-4 d-flex flex-column justify-content-center align-items-start">
+                                <h2 class="text-white fw-black m-0">EPIC DEALS</h2>
+                                <div class="deals-pills d-flex mt-2">
+                                    <div class="bg-primary text-white p-2 me-2 small">1 MEDIUM PIZZA + 2 SMALL DRINKS<br><strong>Rs. 1400</strong></div>
+                                    <div class="bg-danger text-white p-2 small">1 LARGE PIZZA + 1.5LTR DRINK<br><strong>Rs. 1900</strong></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="promo-tile medium-tile rounded-3 shadow-sm" style="background-image: url('https://images.unsplash.com/photo-1571066811444-13c5c51658f3?q=80&w=1200');">
+                             </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-<script>
-    // Header Interactivity: Left Side
-    document.getElementById('phoneIcon').addEventListener('click', function() {
-        alert('Redirecting to Call Dialer...');
-    });
-    
-    document.getElementById('whatsappIcon').addEventListener('click', function() {
-        alert('Redirecting to WhatsApp Chat...');
-    });
-    const dots = document.querySelectorAll('.dot');
-    const heroSection = document.querySelector('.hero-banner');
-
-    // List of your images - Ensure these names match what's in your /images folder!
-    const images = [
-        'images/signature.webp', 
-        'images/ready-to-wear.webp', 
-        'images/coord-sets.webp',
-        'images/pret.webp',
-        'images/sale.webp'
-    ];
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            // Remove 'active' class from all dots
-            dots.forEach(d => d.classList.remove('active'));
-            // Add 'active' class to the clicked dot
-            dot.classList.add('active');
-            // Change the background image of the hero section
-            heroSection.style.backgroundImage = `url('${images[index]}')`;
-        });
-    });
-</script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleOrder(type) {
+            const deliveryBtn = document.querySelector('.delivery');
+            const pickupBtn = document.querySelector('.pickup');
+            
+            if (type === 'delivery') {
+                deliveryBtn.classList.add('active');
+                pickupBtn.classList.remove('active');
+                console.log("Switching to Delivery Logic");
+            } else {
+                pickupBtn.classList.add('active');
+                deliveryBtn.classList.remove('active');
+                console.log("Switching to Pickup/Store Locator Logic");
+            }
+        }
+    </script>
 </body>
 </html>
