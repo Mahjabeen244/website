@@ -21,6 +21,11 @@ body {
     background-color: var(--black);
     padding: 15px 0;
 }
+.header-middle-green {
+    background-color: var(--lime-green);
+    height: 4px; /* Thin professional bar like the original */
+    width: 100%;
+}
 
 /* Custom Styled Logo */
 .main-logo {
