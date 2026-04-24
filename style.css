@@ -1,133 +1,211 @@
-/* Core Styling */
+/* Color Palette */
 :root {
     --dom-blue: #006491;
     --dom-red: #E31837;
-    --dom-dark-blue: #00557a;
+    --dom-dark: #1e1e1e;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa; /* Lighter background like the reference image */
+    margin: 0;
+}
+/* Custom Domino's Text Styling */
+.domino-text {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900; /* Extra Bold */
+    font-size: 1.8rem;
+    color: #006491; /* Official Domino's Blue */
+    letter-spacing: -1px; /* Tighter letter spacing like the logo */
 }
 
-.fw-black { font-weight: 900; }
-.italic { font-style: italic; }
+/* Make sure the navbar stays short */
+.navbar {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    height: 65px !important;
+}
 
-/* Navbar Improvements */
+/* Navbar links styling */
+.nav-link {
+    font-size: 13px !important;
+    color: #333 !important;
+    font-weight: 700;
+}
+
+/* Ensure the toggle bar text is also huge */
+.toggle-side {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 800;
+    font-size: 2rem; /* Big and Bold as requested */
+}
+/* Header Styling (Minimized for 'Short' effect) */
+.navbar {
+    padding-top: 0.2rem !important; /* Extremely minimal padding */
+    padding-bottom: 0.2rem !important;
+    height: 70px; /* Force a shorter overall height */
+}
+
 .navbar-brand img {
-    height: 40px;
+    height: 40px; /* Reduce the physical size of the logo */
     width: auto;
+    filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.1));
 }
 
 .nav-link {
-    color: #333 !important;
-    font-size: 0.9rem;
+    font-size: 13px; /* Slightly smaller text for compact feel */
+    letter-spacing: 0.5px;
+    color: #444 !important;
+    padding-left: 1.5rem !important; /* Increase horizontal space, reduce vertical space */
+    padding-right: 1.5rem !important;
+}
+
+.cart-wrapper, .account-btn {
+    font-size: 14px;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    font-size: 0.7rem;
 }
 
 .text-primary { color: var(--dom-blue) !important; }
 
-/* The Delivery/Pick Up Toggle - Key Feature */
-.order-toggle-container {
-    background-color: #fff;
+/* THE TOGGLE SECTION (BOLD & UNCHANGED) */
+.black-banner {
+    background-color: var(--dom-dark);
 }
 
-.toggle-switch {
-    background-color: var(--dom-blue);
-    border-radius: 50px;
-    position: relative;
-    padding: 5px;
-    width: 100%;
-    max-width: 500px;
+.toggle-container {
     display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 650px;
+    height: 60px;
+    position: relative;
 }
 
-.toggle-btn {
+.toggle-side {
     flex: 1;
-    border: none;
-    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
-    padding: 12px 0;
-    font-weight: 800;
-    font-size: 1.1rem;
-    border-radius: 40px;
-    transition: all 0.3s ease;
-    z-index: 1;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: filter 0.2s;
 }
 
-.toggle-btn.active {
-    background-color: #fff;
-    color: var(--dom-blue);
-}
-
-/* Specific button colors for the "Delivery" or "Pick Up" theme */
-.toggle-btn.delivery.active {
+.delivery-side {
     background-color: var(--dom-blue);
-    color: #fff;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+    margin-right: -20px;
+    padding-right: 20px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
-/* Making it look exactly like the screenshot */
-.toggle-switch {
-    background: linear-gradient(to right, var(--dom-blue) 48%, #fff 48%, #fff 52%, var(--dom-red) 52%);
-    padding: 0;
-    overflow: hidden;
-    height: 55px;
+.pickup-side {
+    background-color: var(--dom-red);
+    margin-left: -20px;
+    padding-left: 20px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
-.toggle-or {
-    background: white;
-    color: #333;
-    width: 40px;
-    height: 40px;
+.toggle-or-circle {
+    width: 45px;
+    height: 45px;
+    background-color: white;
+    color: black;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    font-size: 0.7rem;
-    border: 2px solid #ddd;
+    font-weight: 900;
+    font-size: 0.9rem;
     z-index: 10;
-    margin: 0 -20px; /* Overlap the buttons */
+    border: 3px solid #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
-.delivery { background-color: var(--dom-blue); border-radius: 0; }
-.pickup { background-color: var(--dom-red); border-radius: 0; }
+.toggle-side.active {
+    filter: brightness(1.2);
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
+}
 
-/* Tiles System */
-.promo-tile {
+.toggle-side:not(.active) {
+    opacity: 0.9;
+}
+
+/* Tightly Packed Promo Image Grid */
+.promo-box {
+    width: 100%;
+    background-color: #000;
     background-size: cover;
     background-position: center;
     position: relative;
+}
+
+.main-promo {
+    min-height: 500px;
+}
+
+.side-promo {
     min-height: 250px;
-    cursor: pointer;
-    transition: transform 0.2s;
 }
 
-.promo-tile:hover {
-    transform: scale(1.01);
-}
-
-.large-tile {
-    height: 100%;
-    min-height: 520px;
-}
-
-.medium-tile {
-    height: 250px;
-}
-
-.tile-overlay {
-    background: linear-gradient(to right, rgba(0,0,0,0.4), transparent);
-    height: 100%;
-    border-radius: 8px;
-}
-
-/* Pill styles inside tiles */
-.deals-pills strong {
-    font-size: 1.2rem;
+/* Mimic Text Overlay */
+.fw-black { font-weight: 900; }
+.overlay-text {
+    position: absolute;
+    line-height: 1;
 }
 
 @media (max-width: 768px) {
-    .large-tile { min-height: 350px; }
-    .toggle-btn { font-size: 0.9rem; }
+    .toggle-side { font-size: 1.2rem; }
+    .toggle-container { height: 50px; }
+}
+.brand-text-bold {
+    /* I used 'Ubuntu' because it's a very thick, rounded font like the logo */
+    font-family: 'Ubuntu', sans-serif; 
+    font-weight: 700;           /* This makes it BOLD */
+    font-size: 1.6rem;          /* This makes it BIG */
+    color: #006491;             /* This is the Domino's Blue color */
+    letter-spacing: -1.5px;     /* This pushes letters closer to look like a logo */
+}
+
+/* THE SLIM HEADER FIX */
+.navbar {
+    height: 65px;               /* I locked this to make the white header SHORT */
+    padding: 0 !important;      /* Removed extra space that was making it look big */
+}
+/* This ensures your images look exactly like the screenshot grid */
+.promo-box {
+    width: 100%;
+    background-color: #000;
+    background-size: cover;      /* CHANGE: This makes the image fill the whole box */
+    background-position: center; /* CHANGE: This keeps the pizza centered */
+    position: relative;
+    cursor: pointer;
+}
+
+/* Heights to match the Pakistani site layout */
+.main-promo {
+    min-height: 520px; /* Big left image */
+}
+
+.side-promo {
+    min-height: 258px; /* Smaller right images */
+}
+
+/* Thin gap between images */
+.row.g-1 {
+    --bs-gutter-x: 0.25rem;
+    --bs-gutter-y: 0.25rem;
 }

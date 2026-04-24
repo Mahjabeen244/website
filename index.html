@@ -3,97 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Domino's Pizza Pakistan | Delivery & Carryout</title>
+    <title>Domino's Pizza Pakistan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom py-3">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Domino%27s_pizza_logo.svg" alt="Domino's" width="150">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+        <div class="container-fluid px-3">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Domino%27s_pizza_logo.svg" 
+                     alt="Domino's Tile" 
+                     width="35" 
+                     class="me-2">
+                
+                <span class="brand-text-bold">Domino's</span>
             </a>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                <ul class="navbar-nav fw-bold text-uppercase">
-                    <li class="nav-item"><a class="nav-link mx-2" href="#">Menu</a></li>
-                    <li class="nav-item"><a class="nav-link mx-2" href="#">Stores</a></li>
-                    <li class="nav-item"><a class="nav-link mx-2" href="#">Get the App</a></li>
+
+            <div class="collapse navbar-collapse justify-content-center">
+                <ul class="navbar-nav fw-bold">
+                    <li class="nav-item"><a class="nav-link text-uppercase" href="#">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link text-uppercase" href="#">Stores</a></li>
+                    <li class="nav-item"><a class="nav-link text-uppercase" href="#">Get the App</a></li>
                 </ul>
             </div>
-            <div class="d-flex align-items-center">
-                <div class="cart-icon me-4 position-relative">
-                    <i class="fa-solid fa-cart-shopping fs-4 text-primary"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+
+            <div class="d-flex align-items-center me-md-5">
+                <div class="cart-wrapper position-relative me-3">
+                    <i class="fa-solid fa-cart-shopping fs-3 text-primary"></i>
+                    <span class="badge rounded-pill bg-danger cart-badge">0</span>
                 </div>
-                <div class="user-account fw-bold text-uppercase d-none d-md-block">
-                    <i class="fa-regular fa-circle-user fs-4 me-1 align-middle"></i> My Account
+                <div class="account-btn fw-bold text-uppercase d-flex align-items-center">
+                    <i class="fa-regular fa-circle-user fs-3 me-2"></i> My Account
                 </div>
             </div>
         </div>
     </nav>
 
-    <div class="order-toggle-container py-3">
+    <div class="black-banner py-2">
         <div class="container d-flex justify-content-center">
-            <div class="toggle-switch d-flex align-items-center">
-                <button class="toggle-btn delivery active" onclick="toggleOrder('delivery')">
+            <div class="toggle-container">
+                <div class="toggle-side delivery-side active" id="deliveryBtn" onclick="setActive('delivery')">
                     <i class="fa-solid fa-motorcycle me-2"></i> DELIVERY
-                </button>
-                <div class="toggle-or">OR</div>
-                <button class="toggle-btn pickup" onclick="toggleOrder('pickup')">
+                </div>
+                <div class="toggle-or-circle">OR</div>
+                <div class="toggle-side pickup-side" id="pickupBtn" onclick="setActive('pickup')">
                     <i class="fa-solid fa-store me-2"></i> PICK UP
-                </button>
+                </div>
             </div>
         </div>
     </div>
 
-    <main class="container-fluid px-md-4 py-4">
-        <div class="row g-3">
-            <div class="col-lg-6 col-md-12">
-                <div class="promo-tile large-tile rounded-3 shadow-sm" style="background-image: url('https://images.unsplash.com/photo-1593504049359-74330189a355?q=80&w=1200');">
-                    <div class="tile-overlay p-4">
-                        <h2 class="display-5 fw-black text-white italic">NEW <br> <span class="text-danger">STUFFED</span></h2>
-                    </div>
+    <div class="container-fluid px-2 py-2">
+        <div class="row g-1">
+            
+            <div class="col-md-6 col-12">
+                <div class="promo-box main-promo rounded-1 shadow-sm overflow-hidden" 
+                     style="background-image: url('images/image2.jpg');">
                 </div>
             </div>
-
-            <div class="col-lg-6 col-md-12">
-                <div class="row g-3">
+    
+            <div class="col-md-6 col-12">
+                <div class="row g-1">
                     <div class="col-12">
-                        <div class="promo-tile medium-tile rounded-3 shadow-sm" style="background-image: url('https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?q=80&w=1200');">
-                            <div class="tile-overlay p-4 d-flex flex-column justify-content-center align-items-start">
-                                <h2 class="text-white fw-black m-0">EPIC DEALS</h2>
-                                <div class="deals-pills d-flex mt-2">
-                                    <div class="bg-primary text-white p-2 me-2 small">1 MEDIUM PIZZA + 2 SMALL DRINKS<br><strong>Rs. 1400</strong></div>
-                                    <div class="bg-danger text-white p-2 small">1 LARGE PIZZA + 1.5LTR DRINK<br><strong>Rs. 1900</strong></div>
-                                </div>
-                            </div>
+                        <div class="promo-box side-promo rounded-1 shadow-sm overflow-hidden" 
+                             style="background-image: url('images/image3.jpeg');">
                         </div>
                     </div>
+                    
                     <div class="col-12">
-                        <div class="promo-tile medium-tile rounded-3 shadow-sm" style="background-image: url('https://images.unsplash.com/photo-1571066811444-13c5c51658f3?q=80&w=1200');">
-                             </div>
+                        <div class="promo-box side-promo rounded-1 shadow-sm overflow-hidden" 
+                             style="background-image: url('images/image4.jpeg');">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
     <script>
-        function toggleOrder(type) {
-            const deliveryBtn = document.querySelector('.delivery');
-            const pickupBtn = document.querySelector('.pickup');
-            
-            if (type === 'delivery') {
-                deliveryBtn.classList.add('active');
-                pickupBtn.classList.remove('active');
-                console.log("Switching to Delivery Logic");
+        function setActive(mode) {
+            const delivery = document.getElementById('deliveryBtn');
+            const pickup = document.getElementById('pickupBtn');
+            if (mode === 'delivery') {
+                delivery.classList.add('active');
+                pickup.classList.remove('active');
             } else {
-                pickupBtn.classList.add('active');
-                deliveryBtn.classList.remove('active');
-                console.log("Switching to Pickup/Store Locator Logic");
+                pickup.classList.add('active');
+                delivery.classList.remove('active');
             }
         }
     </script>
