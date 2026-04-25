@@ -320,3 +320,50 @@ body {
 
 .fw-black { font-weight: 900; }
 
+/* This keeps the sidebar fixed while scrolling the items */
+.menu-sidebar {
+    position: sticky;
+    top: 70px; /* Aligns it below the "OUR MENU" header */
+    height: fit-content;
+    z-index: 10;
+}
+
+/* Ensure the main container allows for sticky behavior */
+.row.g-0 {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Make sure the pizza list is the only part that scrolls independently */
+.menu-items-scroll {
+    height: calc(90vh - 70px);
+    overflow-y: auto;
+    scrollbar-width: thin; /* Optional: makes the scrollbar look cleaner */
+}/* 1. This keeps the menu locked to the screen so you don't see the footer */
+/* This makes the menu a "popup" that covers everything EXCEPT the main page footer */
+.menu-overlay {
+    position: fixed; /* Fixed is key to separate it from the main page flow */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1050; /* Ensures it sits above the main page footer */
+    background: white; 
+    overflow: hidden; /* Stops the menu from leaking into the footer area */
+}
+
+/* 2. This controls the white box inside */
+.menu-content {
+    margin-top: 2vh;
+    height: 95vh; /* Set a specific height */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 3. This is what actually scrolls the pizzas */
+.menu-items-scroll {
+    overflow-y: auto; /* Only the pizza list scrolls */
+    flex-grow: 1;
+    padding-bottom: 100px; /* Space at the bottom */
+}
