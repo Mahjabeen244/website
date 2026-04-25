@@ -10,28 +10,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
 
     <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
         <div class="container-fluid px-3">
             <a class="navbar-brand d-flex align-items-center" href="#">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Domino%27s_pizza_logo.svg" 
-                     alt="Domino's Tile" 
-                     width="35" 
-                     class="me-2">
-                
+                     alt="Domino's Tile" width="35" class="me-2">
                 <span class="brand-text-bold">Domino's</span>
             </a>
-
             <div class="collapse navbar-collapse justify-content-center">
                 <ul class="navbar-nav fw-bold">
-                    <li class="nav-item"><a class="nav-link text-uppercase" href="javascript:void(0)" onclick="toggleMenu()">Menu</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link text-uppercase" href="javascript:void(0)" onclick="toggleMenu()">Menu</a></li>
                     <li class="nav-item"><a class="nav-link text-uppercase" href="#">Stores</a></li>
                     <li class="nav-item"><a class="nav-link text-uppercase" href="#">Get the App</a></li>
                 </ul>
             </div>
-
             <div class="d-flex align-items-center me-md-5">
                 <div class="cart-wrapper position-relative me-3">
                     <i class="fa-solid fa-cart-shopping fs-3 text-primary"></i>
@@ -47,7 +40,8 @@
     <div class="black-banner py-2">
         <div class="container d-flex justify-content-center">
             <div class="toggle-container">
-                <div class="toggle-side delivery-side active" id="deliveryBtn" onclick="setActive('delivery')">
+                <!-- CHANGE: added openDeliveryModal() to onclick -->
+                <div class="toggle-side delivery-side active" id="deliveryBtn" onclick="setActive('delivery'); openDeliveryModal()">
                     <i class="fa-solid fa-motorcycle me-2"></i> DELIVERY
                 </div>
                 <div class="toggle-or-circle">OR</div>
@@ -60,31 +54,259 @@
 
     <div class="container-fluid px-2 py-2">
         <div class="row g-1">
-            
             <div class="col-md-6 col-12">
                 <div class="promo-box main-promo rounded-1 shadow-sm overflow-hidden" 
-                     style="background-image: url('images/image2.jpg');">
-                </div>
+                     style="background-image: url('images/image2.jpg');"></div>
             </div>
-    
             <div class="col-md-6 col-12">
                 <div class="row g-1">
                     <div class="col-12">
                         <div class="promo-box side-promo rounded-1 shadow-sm overflow-hidden" 
-                             style="background-image: url('images/image3.jpeg');">
-                        </div>
+                             style="background-image: url('images/image3.jpeg');"></div>
                     </div>
-                    
                     <div class="col-12">
                         <div class="promo-box side-promo rounded-1 shadow-sm overflow-hidden" 
-                             style="background-image: url('images/image4.jpeg');">
-                        </div>
+                             style="background-image: url('images/image4.jpeg');"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- MENU OVERLAY -->
+    <div id="menuOverlay" class="menu-overlay">
+        <div class="menu-content container bg-white shadow-lg rounded-top p-0">
+            <div class="menu-header d-flex justify-content-between align-items-center p-3 border-bottom sticky-top bg-white">
+                <h2 class="fw-bold m-0" style="color: #006491;">OUR MENU</h2>
+                <button class="btn-close" onclick="toggleMenu()"></button>
+            </div>
+
+            <div class="row g-0">
+                <div class="col-3 border-end bg-light p-3 menu-sidebar">
+                    <ul class="list-unstyled fw-bold text-uppercase small text-secondary">
+                        <!-- CHANGE: added onclick to each h4 for sidebar click scrolling -->
+                        <h4 id="classic" class="fw-bold mb-4" onclick="scrollToSection('classic')" style="cursor:pointer;">Classic Flavors</h4>
+                        <h4 id="favorite" class="fw-bold mb-4" onclick="scrollToSection('favorite')" style="cursor:pointer;">Favorite Flavors</h4>
+                        <h4 id="premium" class="fw-bold mb-4" onclick="scrollToSection('premium')" style="cursor:pointer;">Premium Flavors</h4>
+                        <h4 id="super" class="fw-bold mb-4" onclick="scrollToSection('super')" style="cursor:pointer;">Super Loaded</h4>
+                        <h4 id="sides" class="fw-bold mb-4" onclick="scrollToSection('sides')" style="cursor:pointer;">Sides & Desserts</h4>
+                    </ul>
+                </div>
+
+                <div class="col-9 p-4 menu-items-scroll">
+                    <h4 id="classic" class="fw-bold mb-4">Classic Flavors</h4>
+                    <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+                        <div class="col">
+                            <div class="card h-100 border-0 shadow-sm p-2">
+                                <img src="images/alfredo.jpg" class="card-img-top rounded" alt="Tikka">
+                                <div class="card-body">
+                                    <h6 class="fw-bold">Chicken Tikka</h6>
+                                    <p class="small text-muted">Classic Pakistani flavor with tikka chunks.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold text-primary">Rs. 650</span>
+                                        <button class="btn btn-danger btn-sm px-3">ADD</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 border-0 shadow-sm p-2">
+                                <img src="images/chickenfajita.jpg" class="card-img-top rounded" alt="Alfredo">
+                                <div class="card-body">
+                                    <h6 class="fw-bold">Alfredo</h6>
+                                    <p class="small text-muted">Creamy alfredo sauce with chicken.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold text-primary">Rs. 650</span>
+                                        <button class="btn btn-danger btn-sm px-3">ADD</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 id="favorite" class="fw-bold mb-4">Favorite Flavors</h4>
+                    <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+                        <div class="col">
+                            <div class="card h-100 border-0 shadow-sm p-2">
+                                <img src="images/pepperoni.jpg" class="card-img-top rounded" alt="Pepperoni">
+                                <div class="card-body">
+                                    <h6 class="fw-bold">Pepperoni</h6>
+                                    <p class="small text-muted">Loaded with pepperoni & cheese.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold text-primary">Rs. 750</span>
+                                        <button class="btn btn-danger btn-sm px-3">ADD</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 id="premium" class="fw-bold mb-4">Premium Flavors</h4>
+                    <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+                        <div class="col">
+                            <div class="card h-100 border-0 shadow-sm p-2">
+                                <img src="images/chickensupreme.jpg" class="card-img-top rounded" alt="Supreme">
+                                <div class="card-body">
+                                    <h6 class="fw-bold">Chicken Supreme</h6>
+                                    <p class="small text-muted">Loaded with multiple toppings, sausages and olives.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold text-primary">Rs. 850</span>
+                                        <button class="btn btn-danger btn-sm px-3">ADD</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 id="super" class="fw-bold mb-4">Super Loaded</h4>
+                    <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+                        <div class="col">
+                            <div class="card h-100 border-0 shadow-sm p-2">
+                                <img src="images/chickenfajita.jpg" class="card-img-top rounded" alt="Fajita">
+                                <div class="card-body">
+                                    <h6 class="fw-bold">Chicken Fajita</h6>
+                                    <p class="small text-muted">Spicy fajita chicken & veggies.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold text-primary">Rs. 900</span>
+                                        <button class="btn btn-danger btn-sm px-3">ADD</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 id="sides" class="fw-bold mb-4">Sides & Desserts</h4>
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        <div class="col">
+                            <div class="card h-100 border-0 shadow-sm p-2">
+                                <img src="images/garlicbread.jpg" class="card-img-top rounded" alt="Garlic Bread">
+                                <div class="card-body">
+                                    <h6 class="fw-bold">Garlic Bread</h6>
+                                    <p class="small text-muted">Fresh baked garlic bread.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold text-primary">Rs. 250</span>
+                                        <button class="btn btn-danger btn-sm px-3">ADD</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 border-0 shadow-sm p-2">
+                                <img src="images/lavacake.jpg" class="card-img-top rounded" alt="Lava Cake">
+                                <div class="card-body">
+                                    <h6 class="fw-bold">Lava Cake</h6>
+                                    <p class="small text-muted">Chocolate molten lava cake.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold text-primary">Rs. 300</span>
+                                        <button class="btn btn-danger btn-sm px-3">ADD</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- end menu-items-scroll -->
+            </div><!-- end row g-0 -->
+        </div><!-- end menu-content -->
+    </div><!-- end menuOverlay -->
+
+    <!-- FOOTER -->
+    <footer class="dominos-footer">
+        <div class="container py-5">
+            <div class="row g-4 text-secondary">
+                <div class="col-md-3">
+                    <h6 class="footer-header">Domino's Pizza</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="https://dominos.com.pk/pages/about-us" target="_blank">About Us</a></li>
+                        <li><a href="https://dominos.com.pk/pages/privacy-policy" target="_blank">Privacy Policy</a></li>
+                        <li><a href="https://dominos.com.pk/pages/terms-and-conditions" target="_blank">Terms & Conditions</a></li>
+                        <li><a href="https://dominos.com.pk/pages/nutritional-info" target="_blank">Nutritional Info</a></li>
+                        <li><a href="https://dominos.com.pk/pages/download-menu" target="_blank">Download Menu</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="footer-header">Contact</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="tel:111366466" class="contact-num">Call 111 366 466</a></li>
+                        <li><a href="mailto:feedback@dominos.com.pk">Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="footer-header">Help</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="https://dominos.com.pk/orders/track" target="_blank">Track Order</a></li>
+                        <li><a href="https://dominos.com.pk/stores" target="_blank">Store Finder</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 text-center text-md-end">
+                    <div class="social-icons mb-4">
+                        <a href="https://www.facebook.com/DominosPakistan/" target="_blank" class="mx-1 fs-5 text-secondary"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.youtube.com/user/DominosPizzaPK" target="_blank" class="mx-1 fs-5 text-secondary"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://twitter.com/dominos_pk" target="_blank" class="mx-1 fs-5 text-secondary"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/dominos_pk/" target="_blank" class="mx-1 fs-5 text-secondary"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                    <div class="app-stores d-flex flex-column align-items-center align-items-md-end gap-2">
+                        <a href="https://apps.apple.com/pk/app/dominos-pizza-pakistan/id1346387995" target="_blank">
+                            <img src="images/image6.png" alt="App Store" width="135">
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=pk.com.dominos.android&hl=en" target="_blank">
+                            <img src="images/image7.png" alt="Google Play" width="135">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-4 mt-4 border-top border-secondary text-secondary small align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0 copyright-text">
+                    2026 Dominos. All rights reserved
+                </div>
+                <div class="col-md-6 text-center text-md-end powered-by">
+                    Powered By <a href="https://simplexsolutions.com.pk/" target="_blank" class="text-secondary text-decoration-none fw-bold">SimpleX Technology Solutions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CHANGE: DELIVERY LOCATION MODAL added before closing body tag -->
+    <div id="deliveryModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; justify-content:center; align-items:center;">
+        <div style="background:#fff; width:90%; max-width:500px; border-radius:12px; padding:30px; position:relative; max-height:90vh; overflow-y:auto;">
+            
+            <!-- Close Button -->
+            <button onclick="closeDeliveryModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:1.5rem; cursor:pointer;">&#x2715;</button>
+
+            <!-- Title -->
+            <h4 style="font-weight:700; margin-bottom:20px;">Confirm Your Location</h4>
+
+            <!-- Full Address Search Input -->
+            <label style="font-weight:600; font-size:0.9rem;">Enter Full Address</label>
+            <input type="text" id="fullAddressInput" placeholder="Enter your full address"
+                   style="width:100%; padding:12px; border:2px solid #006491; border-radius:8px; margin:8px 0 20px 0; font-size:0.95rem; outline:none;">
+
+            <!-- Location prompt -->
+            <div style="display:flex; align-items:flex-start; gap:10px; margin-bottom:20px;">
+                <i class="fa-solid fa-location-dot" style="color:#006491; font-size:1.3rem; margin-top:3px;"></i>
+                <p style="margin:0; font-weight:600; font-size:0.95rem;">Kindly enable your location or use Search Location</p>
+            </div>
+
+            <!-- Address detail fields -->
+            <input type="text" placeholder="Home / Apartment / Office / Plot number"
+                   style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; margin-bottom:10px; font-size:0.9rem; background:#f8f8f8; outline:none;">
+
+            <div style="display:flex; gap:10px; margin-bottom:20px;">
+                <input type="text" placeholder="Street / Building / Landmark"
+                       style="flex:1; padding:12px; border:1px solid #ddd; border-radius:8px; font-size:0.9rem; background:#f8f8f8; outline:none;">
+                <input type="text" placeholder="Sector / Block / Phase"
+                       style="flex:1; padding:12px; border:1px solid #ddd; border-radius:8px; font-size:0.9rem; background:#f8f8f8; outline:none;">
+            </div>
+
+            <!-- Start Order Button -->
+            <button style="width:100%; padding:14px; background:#555; color:#fff; border:none; border-radius:8px; font-weight:700; font-size:1rem; cursor:pointer; letter-spacing:1px;">
+                START ORDER
+            </button>
+        </div>
+    </div>
+
     <script>
+        /* 1. DELIVERY / PICKUP TOGGLE */
         function setActive(mode) {
             const delivery = document.getElementById('deliveryBtn');
             const pickup = document.getElementById('pickupBtn');
@@ -96,225 +318,67 @@
                 delivery.classList.remove('active');
             }
         }
+
+        /* 2. MENU OVERLAY OPEN / CLOSE */
         function toggleMenu() {
-    const menu = document.getElementById('menuOverlay');
-    if (menu.style.display === 'block') {
-        menu.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Re-enable background scrolling
-    } else {
-        menu.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // Lock background scrolling
-    }
-    const sections = document.querySelectorAll('h4'); // The category headings
-const navLinks = document.querySelectorAll('.sidebar-link');
+            const menu = document.getElementById('menuOverlay');
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            } else {
+                menu.style.display = 'block';
+                document.body.style.overflow = 'hidden';
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            navLinks.forEach(link => {
-                link.classList.remove('active-cat'); // Remove line from all
-                if (link.getAttribute('data-target') === entry.target.id) {
-                    link.classList.add('active-cat'); // Add line to visible one
-                }
-            });
+                const scrollContainer = document.querySelector('.menu-items-scroll');
+                const sections = document.querySelectorAll('.menu-items-scroll h4[id]');
+                const navLinks = document.querySelectorAll('.menu-sidebar h4');
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            navLinks.forEach(link => {
+                                link.classList.remove('active-cat');
+                                if (link.id === entry.target.id) {
+                                    link.classList.add('active-cat');
+                                }
+                            });
+                        }
+                    });
+                }, { root: scrollContainer, threshold: 0.3 });
+
+                sections.forEach(section => observer.observe(section));
+            }
         }
-    });
-}, { threshold: 0.5 }); // Trigger when 50% of the section is visible
 
-sections.forEach(section => observer.observe(section));
-}
+        /* 3. SCROLL TO SECTION — sidebar click scrolls right panel */
+        function scrollToSection(sectionId) {
+            const scrollContainer = document.querySelector('.menu-items-scroll');
+            const target = document.getElementById(sectionId);
+            if (scrollContainer && target) {
+                const offset = target.offsetTop - scrollContainer.offsetTop;
+                scrollContainer.scrollTo({ top: offset, behavior: 'smooth' });
+            }
+        }
+
+        /* 4. CHANGE: DELIVERY MODAL OPEN */
+        function openDeliveryModal() {
+            const modal = document.getElementById('deliveryModal');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        /* 5. CHANGE: DELIVERY MODAL CLOSE */
+        function closeDeliveryModal() {
+            const modal = document.getElementById('deliveryModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        /* 6. CHANGE: Close modal when clicking dark background outside the box */
+        document.getElementById('deliveryModal').addEventListener('click', function(e) {
+            if (e.target === this) closeDeliveryModal();
+        });
     </script>
-    <footer class="dominos-footer">
-        <div class="container py-5">
-            <div class="row g-4 text-secondary">
-                
-                <div class="col-md-3">
-                    <h6 class="footer-header">Domino's Pizza</h6>
-                    <ul class="list-unstyled footer-links">
-                        <li><a href="https://dominos.com.pk/pages/about-us" target="_blank">About Us</a></li>
-                        <li><a href="https://dominos.com.pk/pages/privacy-policy" target="_blank">Privacy Policy</a></li>
-                        <li><a href="https://dominos.com.pk/pages/terms-and-conditions" target="_blank">Terms & Conditions</a></li>
-                        <li><a href="https://dominos.com.pk/pages/nutritional-info" target="_blank">Nutritional Info</a></li>
-                        <li><a href="https://dominos.com.pk/pages/download-menu" target="_blank">Download Menu</a></li>
-                    </ul>
-                </div>
 
-                <div class="col-md-3">
-                    <h6 class="footer-header">Contact</h6>
-                    <ul class="list-unstyled footer-links">
-                        <li><a href="tel:111366466" class="contact-num">Call 111 366 466</a></li>
-                        <li><a href="mailto:feedback@dominos.com.pk">Feedback</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-md-3">
-                    <h6 class="footer-header">Help</h6>
-                    <ul class="list-unstyled footer-links">
-                        <li><a href="https://dominos.com.pk/orders/track" target="_blank">Track Order</a></li>
-                        <li><a href="https://dominos.com.pk/stores" target="_blank">Store Finder</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-md-3 text-center text-md-end">
-                    
-                    <div class="social-icons mb-4">
-                        <a href="https://www.facebook.com/DominosPakistan/" target="_blank" class="mx-1 fs-5 text-secondary"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="https://www.youtube.com/user/DominosPizzaPK" target="_blank" class="mx-1 fs-5 text-secondary"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="https://twitter.com/dominos_pk" target="_blank" class="mx-1 fs-5 text-secondary"><i class="fa-brands fa-x-twitter"></i></a> <a href="https://www.instagram.com/dominos_pk/" target="_blank" class="mx-1 fs-5 text-secondary"><i class="fa-brands fa-instagram"></i></a>
-                    </div>
-                    <div class="app-stores d-flex flex-column align-items-center align-items-md-end gap-2">
-                        <a href="https://apps.apple.com/pk/app/dominos-pizza-pakistan/id1346387995" target="_blank">
-                            <img src="images/image6.png" alt="App Store" width="135">
-                        </a>
-                    
-                        <a href="https://play.google.com/store/apps/details?id=pk.com.dominos.android&hl=en" target="_blank">
-                            <img src="images/image7.png" alt="Google Play" width="135">
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row pt-4 mt-4 border-top border-secondary text-secondary small align-items-center">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0 copyright-text">
-                    2026 Dominos. All rights reserved
-                </div>
-                <div class="col-md-6 text-center text-md-end powered-by">
-                    Powered By <a href="https://simplexsolutions.com.pk/" target="_blank" class="text-secondary text-decoration-none fw-bold">SimpleX Technology Solutions</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <div id="menuOverlay" class="menu-overlay">
-        <div class="menu-content container bg-white shadow-lg rounded-top p-0">
-            <div class="menu-header d-flex justify-content-between align-items-center p-3 border-bottom sticky-top bg-white">
-                <h2 class="fw-bold m-0" style="color: #006491;">OUR MENU</h2>
-                <button class="btn-close" onclick="toggleMenu()"></button>
-            </div>
-    
-            <div class="row g-0">
-                <div class="col-3 border-end bg-light p-3 menu-sidebar">
-                    <ul class="list-unstyled fw-bold text-uppercase small text-secondary">
-                        <h4 id="classic" class="fw-bold mb-4">Classic Flavors</h4>
-                        <h4 id="favorite" class="fw-bold mb-4">Favorite Flavors</h4>
-                        <h4 id="premium" class="fw-bold mb-4">Premium Flavors</h4>
-                        <h4 id="super" class="fw-bold mb-4">Super Loaded</h4>
-                        <h4 id="sides" class="fw-bold mb-4">Sides & Desserts</h4>
-                    </ul>
-                </div>
-                
-                <div class="col-9 p-4 menu-items-scroll">
-                    <div class="col-9 p-4 menu-items-scroll">
-
-                        <h4 class="fw-bold mb-4">Classic Flavors</h4>
-<div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
-    <div class="col">
-        <div class="card h-100 border-0 shadow-sm p-2">
-            <img src="images/alfredo.jpg" class="card-img-top rounded" alt="Tikka">
-            <div class="card-body">
-                <h6 class="fw-bold">Chicken Tikka</h6>
-                <p class="small text-muted">Classic Pakistani flavor with tikka chunks.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="fw-bold text-primary">Rs. 650</span>
-                    <button class="btn btn-danger btn-sm px-3">ADD</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card h-100 border-0 shadow-sm p-2">
-            <img src="images/chickenfajita.jpg" class="card-img-top rounded" alt="Alfredo">
-            <div class="card-body">
-                <h6 class="fw-bold">Alfredo</h6>
-                <p class="small text-muted">Creamy alfredo sauce with chicken.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="fw-bold text-primary">Rs. 650</span>
-                    <button class="btn btn-danger btn-sm px-3">ADD</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<h4 class="fw-bold mb-4">Favorite Flavors</h4>
-<div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
-    <div class="col">
-        <div class="card h-100 border-0 shadow-sm p-2">
-            <img src="images/pepperoni.jpg" class="card-img-top rounded" alt="Pepperoni">
-            <div class="card-body">
-                <h6 class="fw-bold">Pepperoni</h6>
-                <p class="small text-muted">Loaded with pepperoni & cheese.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="fw-bold text-primary">Rs. 750</span>
-                    <button class="btn btn-danger btn-sm px-3">ADD</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<h4 class="fw-bold mb-4">Premium Flavors</h4>
-<div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
-    <div class="col">
-        <div class="card h-100 border-0 shadow-sm p-2">
-            <img src="images/chickensupreme.jpg" class="card-img-top rounded" alt="Supreme">
-            <div class="card-body">
-                <h6 class="fw-bold">Chicken Supreme</h6>
-                <p class="small text-muted">Loaded with multiple toppings, sausages and olives.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="fw-bold text-primary">Rs. 850</span>
-                    <button class="btn btn-danger btn-sm px-3">ADD</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<h4 class="fw-bold mb-4">Super Loaded</h4>
-<div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
-    <div class="col">
-        <div class="card h-100 border-0 shadow-sm p-2">
-            <img src="images/chickenfajita.jpg" class="card-img-top rounded" alt="Fajita">
-            <div class="card-body">
-                <h6 class="fw-bold">Chicken Fajita</h6>
-                <p class="small text-muted">Spicy fajita chicken & veggies.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="fw-bold text-primary">Rs. 900</span>
-                    <button class="btn btn-danger btn-sm px-3">ADD</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<h4 class="fw-bold mb-4">Sides & Desserts</h4>
-<div class="row row-cols-1 row-cols-md-2 g-4">
-    <div class="col">
-        <div class="card h-100 border-0 shadow-sm p-2">
-            <img src="images/garlicbread.jpg" class="card-img-top rounded" alt="Garlic Bread">
-            <div class="card-body">
-                <h6 class="fw-bold">Garlic Bread</h6>
-                <p class="small text-muted">Fresh baked garlic bread.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="fw-bold text-primary">Rs. 250</span>
-                    <button class="btn btn-danger btn-sm px-3">ADD</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card h-100 border-0 shadow-sm p-2">
-            <img src="images/lavacake.jpg" class="card-img-top rounded" alt="Lava Cake">
-            <div class="card-body">
-                <h6 class="fw-bold">Lava Cake</h6>
-                <p class="small text-muted">Chocolate molten lava cake.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="fw-bold text-primary">Rs. 300</span>
-                    <button class="btn btn-danger btn-sm px-3">ADD</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-    
 </body>
 </html>
