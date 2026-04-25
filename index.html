@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/3/3e/Domino%27s_pizza_logo.svg">
     <title>Domino's Pizza Pakistan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -102,7 +103,7 @@
                                     <p class="small text-muted">Classic Pakistani flavor with tikka chunks.</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <span class="fw-bold text-primary">Rs. 650</span>
-                                        <button class="btn btn-danger btn-sm px-3">ADD</button>
+                                        <button class="btn btn-danger btn-sm px-3" onclick="addToCart('alfredo', 650)">ADD</button>
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +116,7 @@
                                     <p class="small text-muted">Creamy alfredo sauce with chicken.</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <span class="fw-bold text-primary">Rs. 650</span>
-                                        <button class="btn btn-danger btn-sm px-3">ADD</button>
+                                        <button class="btn btn-danger btn-sm px-3" onclick="addToCart('Chicken fajita', 650)">ADD</button>
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +133,7 @@
                                     <p class="small text-muted">Loaded with pepperoni & cheese.</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <span class="fw-bold text-primary">Rs. 750</span>
-                                        <button class="btn btn-danger btn-sm px-3">ADD</button>
+                                        <button class="btn btn-danger btn-sm px-3" onclick="addToCart('pepperoni', 650)">ADD</button>
                                     </div>
                                 </div>
                             </div>
@@ -149,7 +150,7 @@
                                     <p class="small text-muted">Loaded with multiple toppings, sausages and olives.</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <span class="fw-bold text-primary">Rs. 850</span>
-                                        <button class="btn btn-danger btn-sm px-3">ADD</button>
+                                        <button class="btn btn-danger btn-sm px-3" onclick="addToCart('Chicken Supreme', 650)">ADD</button>
                                     </div>
                                 </div>
                             </div>
@@ -166,7 +167,7 @@
                                     <p class="small text-muted">Spicy fajita chicken & veggies.</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <span class="fw-bold text-primary">Rs. 900</span>
-                                        <button class="btn btn-danger btn-sm px-3">ADD</button>
+                                        <button class="btn btn-danger btn-sm px-3" onclick="addToCart('Chicken fajita', 650)">ADD</button>
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +184,7 @@
                                     <p class="small text-muted">Fresh baked garlic bread.</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <span class="fw-bold text-primary">Rs. 250</span>
-                                        <button class="btn btn-danger btn-sm px-3">ADD</button>
+                                        <button class="btn btn-danger btn-sm px-3" onclick="addToCart('garlicbread', 650)">ADD</button>
                                     </div>
                                 </div>
                             </div>
@@ -196,7 +197,7 @@
                                     <p class="small text-muted">Chocolate molten lava cake.</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <span class="fw-bold text-primary">Rs. 300</span>
-                                        <button class="btn btn-danger btn-sm px-3">ADD</button>
+                                        <button class="btn btn-danger btn-sm px-3" onclick="addToCart('lavacake', 650)">ADD</button>
                                     </div>
                                 </div>
                             </div>
@@ -272,23 +273,45 @@
     <div id="cartModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; justify-content:center; align-items:center;">
         <div style="background:#fff; width:95%; max-width:900px; border-radius:12px; padding:30px; position:relative; max-height:90vh; overflow-y:auto;">
             <button onclick="closeCartModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:1.5rem; cursor:pointer;">&#x2715;</button>
-
+    
             <div style="display:flex; gap:30px; flex-wrap:wrap;">
-                <!-- Left: Cart Items -->
                 <div style="flex:2; min-width:280px;">
                     <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px; border-bottom:1px solid #eee; padding-bottom:15px;">
                         <i class="fa-solid fa-chevron-left" style="color:#006491; cursor:pointer;" onclick="closeCartModal()"></i>
                         <h5 style="font-weight:700; margin:0;">MY CART</h5>
                     </div>
-                    <!-- Empty cart state -->
-                    <div style="text-align:center; padding:30px 0;">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Domino%27s_pizza_logo.svg" width="80" style="margin-bottom:20px; opacity:0.3;">
-                        <p style="font-size:0.95rem; color:#555; max-width:350px; margin:0 auto 20px auto;">Your cart is currently empty, but your stomach doesn't have to be. Add some items and come back here to checkout.</p>
-                        <button onclick="closeCartModal(); toggleMenu();" style="padding:14px 30px; background:#006491; color:#fff; border:none; border-radius:8px; font-weight:700; font-size:0.95rem; cursor:pointer; letter-spacing:1px;">
-                            START YOUR ORDER
-                        </button>
+                    
+                    <div id="cartItemsContainer">
+                        </div>
+                </div>
+    
+                <div style="flex:1; min-width:240px; background:#f8f9fa; border-radius:10px; padding:20px;">
+                    <h6 style="font-weight:700; margin-bottom:15px;">Add a Voucher Code</h6>
+                    <div style="display:flex; gap:8px; margin-bottom:25px;">
+                        <input type="text" placeholder="Enter Voucher Code" style="flex:1; padding:10px; border:1px solid #ddd; border-radius:8px; font-size:0.9rem; outline:none;">
+                        <button style="padding:10px 16px; background:#E31837; color:#fff; border:none; border-radius:8px; font-weight:700; cursor:pointer;">Apply</button>
+                    </div>
+                    <h6 style="font-weight:700; margin-bottom:10px;">Order Details</h6>
+                    
+                    <div style="border-top:1px solid #ddd; padding-top:15px;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                            <span>Subtotal</span>
+                            <span id="billSubtotal">Rs. 0</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                            <span>Tax (GST)</span>
+                            <span id="billTax">Rs. 0</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; margin-top:15px; border-top:1px solid #ddd; padding-top:15px;">
+                            <span style="font-weight:700; color:#006491;">Grand Total</span>
+                            <span id="billGrandTotal" style="font-weight:700; color:#006491;">Rs. 0</span>
+                        </div>
+                        <button style="width:100%; margin-top:20px; padding:14px; background:#E31837; color:#fff; border:none; border-radius:8px; font-weight:700;">CHECKOUT</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
                 <!-- Right: Order Details -->
                 <div style="flex:1; min-width:240px; background:#f8f9fa; border-radius:10px; padding:20px;">
@@ -509,6 +532,87 @@
         document.getElementById('accountModal').addEventListener('click', function(e) {
             if (e.target === this) closeAccountModal();
         });
+        let cart = [];
+
+function addToCart(name, price) {
+    // Check if item already exists
+    const existingItem = cart.find(item => item.name === name);
+    
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ name: name, price: price, quantity: 1 });
+    }
+    
+    updateCartUI();
+    // Optional: open the cart immediately
+    openCartModal(); 
+}
+
+function removeFromCart(name) {
+    cart = cart.filter(item => item.name !== name);
+    updateCartUI();
+}
+
+function updateQuantity(name, delta) {
+    const item = cart.find(item => item.name === name);
+    if (item) {
+        item.quantity += delta;
+        if (item.quantity <= 0) return removeFromCart(name);
+    }
+    updateCartUI();
+}
+
+function updateCartUI() {
+    const container = document.getElementById('cartItemsContainer');
+    const badge = document.querySelector('.cart-badge');
+    let html = "";
+    let subtotal = 0;
+
+    if (cart.length === 0) {
+        html = `<div style="text-align:center; padding:30px 0;">
+                    <p>Your cart is empty.</p>
+                </div>`;
+        badge.innerText = "0";
+    } else {
+        cart.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            subtotal += itemTotal;
+            html += `
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; padding-bottom:10px; border-bottom:1px solid #f1f1f1;">
+                    <div>
+                        <h6 style="margin:0; font-weight:700;">${item.name}</h6>
+                        <small style="color:#888;">Rs. ${item.price}</small>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:15px;">
+                        <div style="display:flex; align-items:center; border:1px solid #ddd; border-radius:5px;">
+                            <button onclick="updateQuantity('${item.name}', -1)" style="border:none; background:none; padding:5px 10px;">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="updateQuantity('${item.name}', 1)" style="border:none; background:none; padding:5px 10px;">+</button>
+                        </div>
+                        <span style="font-weight:700;">Rs. ${itemTotal}</span>
+                    </div>
+                </div>
+            `;
+        });
+        badge.innerText = cart.reduce((acc, item) => acc + item.quantity, 0);
+    }
+
+    container.innerHTML = html;
+
+    // Bill Calculations
+    const tax = subtotal * 0.13; // 13% GST
+    const grandTotal = subtotal + tax;
+
+    document.getElementById('billSubtotal').innerText = "Rs. " + subtotal;
+    document.getElementById('billTax').innerText = "Rs. " + Math.round(tax);
+    document.getElementById('billGrandTotal').innerText = "Rs. " + Math.round(grandTotal);
+}
+
+function closeCartModal() {
+    document.getElementById('cartModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
     </script>
 
 </body>
