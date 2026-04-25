@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/3/3e/Domino%27s_pizza_logo.svg">
     <title>Domino's Pizza Pakistan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -269,7 +269,6 @@
         </div>
     </div>
 
-    <!-- CHANGE: CART MODAL -->
     <div id="cartModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; justify-content:center; align-items:center;">
         <div style="background:#fff; width:95%; max-width:900px; border-radius:12px; padding:30px; position:relative; max-height:90vh; overflow-y:auto;">
             <button onclick="closeCartModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:1.5rem; cursor:pointer;">&#x2715;</button>
@@ -280,17 +279,10 @@
                         <i class="fa-solid fa-chevron-left" style="color:#006491; cursor:pointer;" onclick="closeCartModal()"></i>
                         <h5 style="font-weight:700; margin:0;">MY CART</h5>
                     </div>
-                    
-                    <div id="cartItemsContainer">
-                        </div>
+                    <div id="cartItemsContainer"></div>
                 </div>
     
                 <div style="flex:1; min-width:240px; background:#f8f9fa; border-radius:10px; padding:20px;">
-                    <h6 style="font-weight:700; margin-bottom:15px;">Add a Voucher Code</h6>
-                    <div style="display:flex; gap:8px; margin-bottom:25px;">
-                        <input type="text" placeholder="Enter Voucher Code" style="flex:1; padding:10px; border:1px solid #ddd; border-radius:8px; font-size:0.9rem; outline:none;">
-                        <button style="padding:10px 16px; background:#E31837; color:#fff; border:none; border-radius:8px; font-weight:700; cursor:pointer;">Apply</button>
-                    </div>
                     <h6 style="font-weight:700; margin-bottom:10px;">Order Details</h6>
                     
                     <div style="border-top:1px solid #ddd; padding-top:15px;">
@@ -306,38 +298,9 @@
                             <span style="font-weight:700; color:#006491;">Grand Total</span>
                             <span id="billGrandTotal" style="font-weight:700; color:#006491;">Rs. 0</span>
                         </div>
-                        <button style="width:100%; margin-top:20px; padding:14px; background:#E31837; color:#fff; border:none; border-radius:8px; font-weight:700;">CHECKOUT</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                <!-- Right: Order Details -->
-                <div style="flex:1; min-width:240px; background:#f8f9fa; border-radius:10px; padding:20px;">
-                    <!-- Voucher -->
-                    <h6 style="font-weight:700; margin-bottom:15px;">Add a Voucher Code</h6>
-                    <div style="display:flex; gap:8px; margin-bottom:25px;">
-                        <input type="text" placeholder="Enter Voucher Code"
-                               style="flex:1; padding:10px; border:1px solid #ddd; border-radius:8px; font-size:0.9rem; outline:none;">
-                        <button style="padding:10px 16px; background:#E31837; color:#fff; border:none; border-radius:8px; font-weight:700; cursor:pointer;">Apply</button>
-                    </div>
-                    <!-- Order Details -->
-                    <h6 style="font-weight:700; margin-bottom:10px;">Order Details</h6>
-                    <p style="font-size:0.85rem; color:#888; margin-bottom:20px;">Add some items from the menu to get started!</p>
-                    <div style="border-top:1px solid #ddd; padding-top:15px;">
-                        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-                            <span style="font-size:0.9rem;">Total</span>
-                            <span style="font-size:0.9rem; font-weight:600;">Rs. 0</span>
-                        </div>
-                        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-                            <span style="font-size:0.9rem;">Delivery Charges</span>
-                            <span style="font-size:0.9rem; font-weight:600;">Rs. 0</span>
-                        </div>
-                        <div style="display:flex; justify-content:space-between; margin-top:15px; border-top:1px solid #ddd; padding-top:15px;">
-                            <span style="font-weight:700; color:#006491;">Grand Total</span>
-                            <span style="font-weight:700; color:#006491;">Rs. 0</span>
-                        </div>
+                        <button id="checkoutBtn" onclick="placeOrder()" style="width:100%; margin-top:20px; padding:14px; background:#E31837; color:#fff; border:none; border-radius:8px; font-weight:700; cursor:pointer; transition: 0.3s;">
+                            PLACE ORDER
+                        </button>
                     </div>
                 </div>
             </div>
@@ -545,7 +508,7 @@ function addToCart(name, price) {
     }
     
     updateCartUI();
-    // Optional: open the cart immediately
+    //optional
     openCartModal(); 
 }
 
@@ -612,6 +575,36 @@ function updateCartUI() {
 function closeCartModal() {
     document.getElementById('cartModal').style.display = 'none';
     document.body.style.overflow = 'auto';
+}
+function placeOrder() {
+    const btn = document.getElementById('checkoutBtn');
+    const grandTotal = document.getElementById('billGrandTotal').innerText;
+
+    // Don't allow order if cart is empty
+    if (grandTotal === "Rs. 0") {
+        alert("Add some pizzas to your cart first!");
+        return;
+    }
+
+    // 1. Change button appearance
+    btn.innerText = "ORDER PLACED";
+    btn.style.background = "#28a745"; // Success Green
+    btn.disabled = true; // Prevent double clicking
+
+    // 2. Wait 2 seconds, then reset everything
+    setTimeout(() => {
+        alert("Success! Your Domino's order is on the way.");
+        
+        // Reset the cart
+        cart = []; 
+        if (typeof updateCartUI === "function") updateCartUI();
+        
+        // Close modal and reset button for next time
+        closeCartModal();
+        btn.innerText = "PLACE ORDER";
+        btn.style.background = "#E31837";
+        btn.disabled = false;
+    }, 2000);
 }
     </script>
 
