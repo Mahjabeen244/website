@@ -26,11 +26,13 @@
                 </ul>
             </div>
             <div class="d-flex align-items-center me-md-5">
-                <div class="cart-wrapper position-relative me-3">
+                <!-- CHANGE: added onclick to cart -->
+                <div class="cart-wrapper position-relative me-3" onclick="openCartModal()" style="cursor:pointer;">
                     <i class="fa-solid fa-cart-shopping fs-3 text-primary"></i>
                     <span class="badge rounded-pill bg-danger cart-badge">0</span>
                 </div>
-                <div class="account-btn fw-bold text-uppercase d-flex align-items-center">
+                <!-- CHANGE: added onclick to account -->
+                <div class="account-btn fw-bold text-uppercase d-flex align-items-center" onclick="openAccountModal()" style="cursor:pointer;">
                     <i class="fa-regular fa-circle-user fs-3 me-2"></i> My Account
                 </div>
             </div>
@@ -40,14 +42,12 @@
     <div class="black-banner py-2">
         <div class="container d-flex justify-content-center">
             <div class="toggle-container">
-                <!-- CHANGE: added openDeliveryModal() to onclick -->
                 <div class="toggle-side delivery-side active" id="deliveryBtn" onclick="setActive('delivery'); openDeliveryModal()">
                     <i class="fa-solid fa-motorcycle me-2"></i> DELIVERY
                 </div>
                 <div class="toggle-or-circle">OR</div>
-                    <div class="toggle-side pickup-side" id="pickupBtn" onclick="setActive('pickup'); openPickupModal()">
+                <div class="toggle-side pickup-side" id="pickupBtn" onclick="setActive('pickup'); openPickupModal()">
                     <i class="fa-solid fa-store me-2"></i> PICK UP
-                
                 </div>
             </div>
         </div>
@@ -81,11 +81,9 @@
                 <h2 class="fw-bold m-0" style="color: #006491;">OUR MENU</h2>
                 <button class="btn-close" onclick="toggleMenu()"></button>
             </div>
-
             <div class="row g-0">
                 <div class="col-3 border-end bg-light p-3 menu-sidebar">
                     <ul class="list-unstyled fw-bold text-uppercase small text-secondary">
-                        <!-- CHANGE: added onclick to each h4 for sidebar click scrolling -->
                         <h4 id="classic" class="fw-bold mb-4" onclick="scrollToSection('classic')" style="cursor:pointer;">Classic Flavors</h4>
                         <h4 id="favorite" class="fw-bold mb-4" onclick="scrollToSection('favorite')" style="cursor:pointer;">Favorite Flavors</h4>
                         <h4 id="premium" class="fw-bold mb-4" onclick="scrollToSection('premium')" style="cursor:pointer;">Premium Flavors</h4>
@@ -93,7 +91,6 @@
                         <h4 id="sides" class="fw-bold mb-4" onclick="scrollToSection('sides')" style="cursor:pointer;">Sides & Desserts</h4>
                     </ul>
                 </div>
-
                 <div class="col-9 p-4 menu-items-scroll">
                     <h4 id="classic" class="fw-bold mb-4">Classic Flavors</h4>
                     <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
@@ -205,45 +202,154 @@
                             </div>
                         </div>
                     </div>
-
                 </div><!-- end menu-items-scroll -->
             </div><!-- end row g-0 -->
         </div><!-- end menu-content -->
-    </div><!-- end menuOverlay --><!-- PICKUP STORE MODAL -->
+    </div><!-- end menuOverlay -->
+
     <!-- PICKUP STORE MODAL -->
-<div id="pickupModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; justify-content:center; align-items:center;">
-    <div style="background:#fff; width:90%; max-width:500px; border-radius:12px; padding:30px; position:relative;">
-        <button onclick="closePickupModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:1.5rem; cursor:pointer;">&#x2715;</button>
-        <h4 style="font-weight:700; margin-bottom:25px;">Pickup Store</h4>
-        <select style="width:100%; padding:14px; border:1px solid #ddd; border-radius:8px; margin-bottom:15px; font-size:0.95rem; background:#fff; outline:none; color:#555;">
-            <option value="" disabled selected>Select your City</option>
-            <option>Karachi</option>
-            <option>Lahore</option>
-            <option>Islamabad</option>
-            <option>Rawalpindi</option>
-            <option>Faisalabad</option>
-            <option>Multan</option>
-            <option>Peshawar</option>
-        </select>
-        <select style="width:100%; padding:14px; border:1px solid #ddd; border-radius:8px; margin-bottom:25px; font-size:0.95rem; background:#fff; outline:none; color:#555;">
-            <option value="" disabled selected>Select your pickup store</option>
-            <option>Clifton Branch</option>
-            <option>Gulshan Branch</option>
-            <option>DHA Branch</option>
-        </select>
-        <p style="font-weight:700; font-size:1rem; margin-bottom:15px;">When do you want your order ?</p>
-        <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
-            <input type="radio" name="pickupTime" id="pickupNow" style="width:18px; height:18px; cursor:pointer;">
-            <label for="pickupNow" style="font-size:0.95rem; cursor:pointer; margin:0;">Pickup Now</label>
+    <div id="pickupModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; justify-content:center; align-items:center;">
+        <div style="background:#fff; width:90%; max-width:500px; border-radius:12px; padding:30px; position:relative;">
+            <button onclick="closePickupModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:1.5rem; cursor:pointer;">&#x2715;</button>
+            <h4 style="font-weight:700; margin-bottom:25px;">Pickup Store</h4>
+            <select style="width:100%; padding:14px; border:1px solid #ddd; border-radius:8px; margin-bottom:15px; font-size:0.95rem; background:#fff; outline:none; color:#555;">
+                <option value="" disabled selected>Select your City</option>
+                <option>Karachi</option>
+                <option>Lahore</option>
+                <option>Islamabad</option>
+                <option>Rawalpindi</option>
+                <option>Faisalabad</option>
+                <option>Multan</option>
+                <option>Peshawar</option>
+            </select>
+            <select style="width:100%; padding:14px; border:1px solid #ddd; border-radius:8px; margin-bottom:25px; font-size:0.95rem; background:#fff; outline:none; color:#555;">
+                <option value="" disabled selected>Select your pickup store</option>
+                <option>Clifton Branch</option>
+                <option>Gulshan Branch</option>
+                <option>DHA Branch</option>
+            </select>
+            <p style="font-weight:700; font-size:1rem; margin-bottom:15px;">When do you want your order ?</p>
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+                <input type="radio" name="pickupTime" id="pickupNow" style="width:18px; height:18px; cursor:pointer;">
+                <label for="pickupNow" style="font-size:0.95rem; cursor:pointer; margin:0;">Pickup Now</label>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:25px;">
+                <input type="radio" name="pickupTime" id="pickupLater" style="width:18px; height:18px; cursor:pointer;">
+                <label for="pickupLater" style="font-size:0.95rem; color:#aaa; cursor:pointer; margin:0;">Pickup Later</label>
+            </div>
+            <button style="width:100%; padding:14px; background:#555; color:#fff; border:none; border-radius:8px; font-weight:700; font-size:1rem; cursor:pointer; letter-spacing:1px; margin-bottom:20px;">START ORDER</button>
+            <p style="text-align:center; margin:0; font-size:0.9rem;">Already a user? <a href="#" style="color:#006491; font-weight:600; text-decoration:none;">Login</a></p>
         </div>
-        <div style="display:flex; align-items:center; gap:10px; margin-bottom:25px;">
-            <input type="radio" name="pickupTime" id="pickupLater" style="width:18px; height:18px; cursor:pointer;">
-            <label for="pickupLater" style="font-size:0.95rem; color:#aaa; cursor:pointer; margin:0;">Pickup Later</label>
-        </div>
-        <button style="width:100%; padding:14px; background:#555; color:#fff; border:none; border-radius:8px; font-weight:700; font-size:1rem; cursor:pointer; letter-spacing:1px; margin-bottom:20px;">START ORDER</button>
-        <p style="text-align:center; margin:0; font-size:0.9rem;">Already a user? <a href="#" style="color:#006491; font-weight:600; text-decoration:none;">Login</a></p>
     </div>
-</div>
+
+    <!-- DELIVERY LOCATION MODAL -->
+    <div id="deliveryModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; justify-content:center; align-items:center;">
+        <div style="background:#fff; width:90%; max-width:500px; border-radius:12px; padding:30px; position:relative; max-height:90vh; overflow-y:auto;">
+            <button onclick="closeDeliveryModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:1.5rem; cursor:pointer;">&#x2715;</button>
+            <h4 style="font-weight:700; margin-bottom:20px;">Confirm Your Location</h4>
+            <label style="font-weight:600; font-size:0.9rem;">Enter Full Address</label>
+            <input type="text" id="fullAddressInput" placeholder="Enter your full address"
+                   style="width:100%; padding:12px; border:2px solid #006491; border-radius:8px; margin:8px 0 20px 0; font-size:0.95rem; outline:none;">
+            <div style="display:flex; align-items:flex-start; gap:10px; margin-bottom:20px;">
+                <i class="fa-solid fa-location-dot" style="color:#006491; font-size:1.3rem; margin-top:3px;"></i>
+                <p style="margin:0; font-weight:600; font-size:0.95rem;">Kindly enable your location or use Search Location</p>
+            </div>
+            <input type="text" placeholder="Home / Apartment / Office / Plot number"
+                   style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; margin-bottom:10px; font-size:0.9rem; background:#f8f8f8; outline:none;">
+            <div style="display:flex; gap:10px; margin-bottom:20px;">
+                <input type="text" placeholder="Street / Building / Landmark"
+                       style="flex:1; padding:12px; border:1px solid #ddd; border-radius:8px; font-size:0.9rem; background:#f8f8f8; outline:none;">
+                <input type="text" placeholder="Sector / Block / Phase"
+                       style="flex:1; padding:12px; border:1px solid #ddd; border-radius:8px; font-size:0.9rem; background:#f8f8f8; outline:none;">
+            </div>
+            <button style="width:100%; padding:14px; background:#555; color:#fff; border:none; border-radius:8px; font-weight:700; font-size:1rem; cursor:pointer; letter-spacing:1px;">
+                START ORDER
+            </button>
+        </div>
+    </div>
+
+    <!-- CHANGE: CART MODAL -->
+    <div id="cartModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; justify-content:center; align-items:center;">
+        <div style="background:#fff; width:95%; max-width:900px; border-radius:12px; padding:30px; position:relative; max-height:90vh; overflow-y:auto;">
+            <button onclick="closeCartModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:1.5rem; cursor:pointer;">&#x2715;</button>
+
+            <div style="display:flex; gap:30px; flex-wrap:wrap;">
+                <!-- Left: Cart Items -->
+                <div style="flex:2; min-width:280px;">
+                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px; border-bottom:1px solid #eee; padding-bottom:15px;">
+                        <i class="fa-solid fa-chevron-left" style="color:#006491; cursor:pointer;" onclick="closeCartModal()"></i>
+                        <h5 style="font-weight:700; margin:0;">MY CART</h5>
+                    </div>
+                    <!-- Empty cart state -->
+                    <div style="text-align:center; padding:30px 0;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Domino%27s_pizza_logo.svg" width="80" style="margin-bottom:20px; opacity:0.3;">
+                        <p style="font-size:0.95rem; color:#555; max-width:350px; margin:0 auto 20px auto;">Your cart is currently empty, but your stomach doesn't have to be. Add some items and come back here to checkout.</p>
+                        <button onclick="closeCartModal(); toggleMenu();" style="padding:14px 30px; background:#006491; color:#fff; border:none; border-radius:8px; font-weight:700; font-size:0.95rem; cursor:pointer; letter-spacing:1px;">
+                            START YOUR ORDER
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right: Order Details -->
+                <div style="flex:1; min-width:240px; background:#f8f9fa; border-radius:10px; padding:20px;">
+                    <!-- Voucher -->
+                    <h6 style="font-weight:700; margin-bottom:15px;">Add a Voucher Code</h6>
+                    <div style="display:flex; gap:8px; margin-bottom:25px;">
+                        <input type="text" placeholder="Enter Voucher Code"
+                               style="flex:1; padding:10px; border:1px solid #ddd; border-radius:8px; font-size:0.9rem; outline:none;">
+                        <button style="padding:10px 16px; background:#E31837; color:#fff; border:none; border-radius:8px; font-weight:700; cursor:pointer;">Apply</button>
+                    </div>
+                    <!-- Order Details -->
+                    <h6 style="font-weight:700; margin-bottom:10px;">Order Details</h6>
+                    <p style="font-size:0.85rem; color:#888; margin-bottom:20px;">Add some items from the menu to get started!</p>
+                    <div style="border-top:1px solid #ddd; padding-top:15px;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                            <span style="font-size:0.9rem;">Total</span>
+                            <span style="font-size:0.9rem; font-weight:600;">Rs. 0</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                            <span style="font-size:0.9rem;">Delivery Charges</span>
+                            <span style="font-size:0.9rem; font-weight:600;">Rs. 0</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; margin-top:15px; border-top:1px solid #ddd; padding-top:15px;">
+                            <span style="font-weight:700; color:#006491;">Grand Total</span>
+                            <span style="font-weight:700; color:#006491;">Rs. 0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHANGE: ACCOUNT / LOGIN MODAL -->
+    <div id="accountModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; justify-content:center; align-items:center;">
+        <div style="background:#fff; width:90%; max-width:420px; border-radius:12px; padding:35px 30px; position:relative; text-align:center;">
+            <button onclick="closeAccountModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:1.5rem; cursor:pointer;">&#x2715;</button>
+
+            <!-- Logo -->
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Domino%27s_pizza_logo.svg" width="50" style="margin-bottom:10px;">
+            <h5 style="font-weight:700; margin-bottom:5px; color:#006491;">Welcome to Domino's</h5>
+            <p style="font-size:0.85rem; color:#888; margin-bottom:25px;">Sign in to track orders and save your details</p>
+
+            <!-- WhatsApp Login -->
+            <button style="width:100%; padding:13px; background:#25D366; color:#fff; border:none; border-radius:8px; font-weight:700; font-size:0.95rem; cursor:pointer; margin-bottom:12px; display:flex; align-items:center; justify-content:center; gap:10px;">
+                <i class="fa-brands fa-whatsapp" style="font-size:1.2rem;"></i> Sign in with WhatsApp
+            </button>
+
+            <!-- Phone Login -->
+            <button style="width:100%; padding:13px; background:#006491; color:#fff; border:none; border-radius:8px; font-weight:700; font-size:0.95rem; cursor:pointer; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px;">
+                <i class="fa-solid fa-phone" style="font-size:1rem;"></i> Sign in with Phone Number
+            </button>
+
+            <div style="border-top:1px solid #eee; padding-top:15px;">
+                <p style="font-size:0.85rem; color:#888; margin-bottom:10px;">New to Domino's?</p>
+                <button style="width:100%; padding:13px; background:#fff; color:#006491; border:2px solid #006491; border-radius:8px; font-weight:700; font-size:0.95rem; cursor:pointer;">
+                    Create Account
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- FOOTER -->
     <footer class="dominos-footer">
         <div class="container py-5">
@@ -300,45 +406,6 @@
         </div>
     </footer>
 
-    <!-- CHANGE: DELIVERY LOCATION MODAL added before closing body tag -->
-    <div id="deliveryModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; justify-content:center; align-items:center;">
-        <div style="background:#fff; width:90%; max-width:500px; border-radius:12px; padding:30px; position:relative; max-height:90vh; overflow-y:auto;">
-            
-            <!-- Close Button -->
-            <button onclick="closeDeliveryModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:1.5rem; cursor:pointer;">&#x2715;</button>
-
-            <!-- Title -->
-            <h4 style="font-weight:700; margin-bottom:20px;">Confirm Your Location</h4>
-
-            <!-- Full Address Search Input -->
-            <label style="font-weight:600; font-size:0.9rem;">Enter Full Address</label>
-            <input type="text" id="fullAddressInput" placeholder="Enter your full address"
-                   style="width:100%; padding:12px; border:2px solid #006491; border-radius:8px; margin:8px 0 20px 0; font-size:0.95rem; outline:none;">
-
-            <!-- Location prompt -->
-            <div style="display:flex; align-items:flex-start; gap:10px; margin-bottom:20px;">
-                <i class="fa-solid fa-location-dot" style="color:#006491; font-size:1.3rem; margin-top:3px;"></i>
-                <p style="margin:0; font-weight:600; font-size:0.95rem;">Kindly enable your location or use Search Location</p>
-            </div>
-
-            <!-- Address detail fields -->
-            <input type="text" placeholder="Home / Apartment / Office / Plot number"
-                   style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; margin-bottom:10px; font-size:0.9rem; background:#f8f8f8; outline:none;">
-
-            <div style="display:flex; gap:10px; margin-bottom:20px;">
-                <input type="text" placeholder="Street / Building / Landmark"
-                       style="flex:1; padding:12px; border:1px solid #ddd; border-radius:8px; font-size:0.9rem; background:#f8f8f8; outline:none;">
-                <input type="text" placeholder="Sector / Block / Phase"
-                       style="flex:1; padding:12px; border:1px solid #ddd; border-radius:8px; font-size:0.9rem; background:#f8f8f8; outline:none;">
-            </div>
-
-            <!-- Start Order Button -->
-            <button style="width:100%; padding:14px; background:#555; color:#fff; border:none; border-radius:8px; font-weight:700; font-size:1rem; cursor:pointer; letter-spacing:1px;">
-                START ORDER
-            </button>
-        </div>
-    </div>
-
     <script>
         /* 1. DELIVERY / PICKUP TOGGLE */
         function setActive(mode) {
@@ -362,11 +429,9 @@
             } else {
                 menu.style.display = 'block';
                 document.body.style.overflow = 'hidden';
-
                 const scrollContainer = document.querySelector('.menu-items-scroll');
                 const sections = document.querySelectorAll('.menu-items-scroll h4[id]');
                 const navLinks = document.querySelectorAll('.menu-sidebar h4');
-
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
@@ -379,12 +444,11 @@
                         }
                     });
                 }, { root: scrollContainer, threshold: 0.3 });
-
                 sections.forEach(section => observer.observe(section));
             }
         }
 
-        /* 3. SCROLL TO SECTION — sidebar click scrolls right panel */
+        /* 3. SCROLL TO SECTION */
         function scrollToSection(sectionId) {
             const scrollContainer = document.querySelector('.menu-items-scroll');
             const target = document.getElementById(sectionId);
@@ -394,38 +458,57 @@
             }
         }
 
-        /* 4. CHANGE: DELIVERY MODAL OPEN */
+        /* 4. DELIVERY MODAL */
         function openDeliveryModal() {
-            const modal = document.getElementById('deliveryModal');
-            modal.style.display = 'flex';
+            document.getElementById('deliveryModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
-
-        /* 5. CHANGE: DELIVERY MODAL CLOSE */
         function closeDeliveryModal() {
-            const modal = document.getElementById('deliveryModal');
-            modal.style.display = 'none';
+            document.getElementById('deliveryModal').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-
-        /* 6. CHANGE: Close modal when clicking dark background outside the box */
         document.getElementById('deliveryModal').addEventListener('click', function(e) {
             if (e.target === this) closeDeliveryModal();
+        });
+
+        /* 5. PICKUP MODAL */
+        function openPickupModal() {
+            document.getElementById('pickupModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
-        
-    );
-    /* PICKUP MODAL OPEN */
-    function openPickupModal() {
-    document.getElementById('pickupModal').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-}
-function closePickupModal() {
-    document.getElementById('pickupModal').style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-document.getElementById('pickupModal').addEventListener('click', function(e) {
-    if (e.target === this) closePickupModal();
-});
+        function closePickupModal() {
+            document.getElementById('pickupModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        document.getElementById('pickupModal').addEventListener('click', function(e) {
+            if (e.target === this) closePickupModal();
+        });
+
+        /* 6. CHANGE: CART MODAL */
+        function openCartModal() {
+            document.getElementById('cartModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeCartModal() {
+            document.getElementById('cartModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        document.getElementById('cartModal').addEventListener('click', function(e) {
+            if (e.target === this) closeCartModal();
+        });
+
+        /* 7. CHANGE: ACCOUNT MODAL */
+        function openAccountModal() {
+            document.getElementById('accountModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeAccountModal() {
+            document.getElementById('accountModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        document.getElementById('accountModal').addEventListener('click', function(e) {
+            if (e.target === this) closeAccountModal();
+        });
     </script>
 
 </body>
