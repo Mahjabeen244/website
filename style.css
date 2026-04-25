@@ -189,23 +189,90 @@ body {
 .promo-box {
     width: 100%;
     background-color: #000;
-    background-size: cover;      /* CHANGE: This makes the image fill the whole box */
+    height: 0;
+    /* CHANGE: Increased from 100% to 125% to make the box taller */
+    /* This will reveal the "Creamy Kebab" text at the bottom */
+    padding-top: 150%;
+    background-size: 100% 100%;   
+    background-repeat: no-repeat;   /* CHANGE: This makes the image fill the whole box */
     background-position: center; /* CHANGE: This keeps the pizza centered */
     position: relative;
     cursor: pointer;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
 }
 
 /* Heights to match the Pakistani site layout */
+
 .main-promo {
-    min-height: 520px; /* Big left image */
+    height: 0;
+    padding-top: 100%; /* This makes the left box a perfect square */
+    background-size: cover; 
+    height: 75vh; 
+    margin-bottom: 10px;
 }
 
 .side-promo {
-    min-height: 258px; /* Smaller right images */
+    height: 0;
+    padding-top: 50%; /* This matches the width/height of the Epic Deals banners */
+    background-size: cover;
+    height: 35vh;
+    
 }
 
-/* Thin gap between images */
+/* CHANGE: Reduce the space between the tiles even more to match original */
 .row.g-1 {
-    --bs-gutter-x: 0.25rem;
-    --bs-gutter-y: 0.25rem;
+    --bs-gutter-x: 8px;
+    --bs-gutter-y: 8px;
+}
+/* EXACT RECREATION: FOOTER STYLING */
+.dominos-footer {
+    background-color: #262626; /* CHANGE: The exact dark gray color from picture 1 */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* CHANGE: Match native font */
+}
+
+.footer-header {
+    color: #fff; /* CHANGE: White titles like the original */
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-links li a {
+    color: #aaa; /* CHANGE: Light gray, sharp text color */
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+    line-height: 1.9; /* CHANGE: Match exact line spacing */
+}
+
+/* Subtle hover effect from original site */
+.footer-links li a:hover {
+    color: #fff;
+}
+
+/* Specific styling for the phone number */
+.contact-num {
+    color: #fff !important; 
+    font-weight: bold;
+}
+
+/* Social icons alignment and spacing */
+.social-icons a i {
+    opacity: 0.8;
+}
+
+.social-icons a:hover i {
+    opacity: 1;
+    color: #fff !important;
+}
+
+/* Bottom copyright area */
+.small {
+    font-size: 0.8rem;
+}
+
+.copyright-text, .powered-by {
+    letter-spacing: 0.5px;
 }
