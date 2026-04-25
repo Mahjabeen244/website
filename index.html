@@ -25,6 +25,8 @@
             <div class="collapse navbar-collapse justify-content-center">
                 <ul class="navbar-nav fw-bold">
                     <li class="nav-item"><a class="nav-link text-uppercase" href="#">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link text-uppercase" href="javascript:void(0)" onclick="toggleMenu()">Menu</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link text-uppercase" href="#">Stores</a></li>
                     <li class="nav-item"><a class="nav-link text-uppercase" href="#">Get the App</a></li>
                 </ul>
@@ -94,7 +96,86 @@
                 delivery.classList.remove('active');
             }
         }
+        function toggleMenu() {
+        const menu = document.getElementById('menuOverlay');
+        if (menu.style.display === 'block') {
+            menu.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enables background scrolling
+        } else {
+            menu.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevents background scrolling when menu is open
+        }
+    }
     </script>
+    <div id="menuOverlay" class="menu-overlay">
+        <div class="menu-content container bg-white shadow-lg rounded-top p-0">
+            <div class="menu-header d-flex justify-content-between align-items-center p-3 border-bottom sticky-top bg-white">
+                <h2 class="fw-bold m-0" style="color: #006491;">OUR MENU</h2>
+                <button class="btn-close" onclick="toggleMenu()"></button>
+            </div>
+    
+            <div class="row g-0">
+                <div class="col-3 border-end bg-light p-3 menu-sidebar">
+                    <ul class="list-unstyled fw-bold text-uppercase small text-secondary">
+                        <li class="mb-3 active-cat">Classic Flavors</li>
+                        <li class="mb-3">Favorite Flavors</li>
+                        <li class="mb-3">Premium Flavors</li>
+                        <li class="mb-3">Super Loaded</li>
+                        <li class="mb-3">Sides & Desserts</li>
+                    </ul>
+                </div>
+                
+                <div class="col-9 p-4 menu-items-scroll">
+                    <h4 class="fw-bold mb-4">Classic Flavors</h4>
+                    <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+                        <div class="col">
+                            <div class="card h-100 border-0 shadow-sm p-2">
+                                <img src="https://www.dominos.com.pk/images/alfredo.png" class="card-img-top rounded" alt="Alfredo">
+                                <div class="card-body">
+                                    <h6 class="fw-bold">Alfredo Pizza</h6>
+                                    <p class="small text-muted">Alfredo sauce, cheddar, marinated grilled chicken, and mushrooms.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                                        <span class="fw-bold text-primary">Rs. 650</span>
+                                        <button class="btn btn-sm btn-danger px-3">ADD</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 border-0 shadow-sm p-2">
+                                <img src="https://www.dominos.com.pk/images/chicken-tikka.png" class="card-img-top rounded" alt="Tikka">
+                                <div class="card-body">
+                                    <h6 class="fw-bold">Chicken Tikka</h6>
+                                    <p class="small text-muted">Mozzarella cheese, chicken tikka chunks, and onions.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                                        <span class="fw-bold text-primary">Rs. 650</span>
+                                        <button class="btn btn-sm btn-danger px-3">ADD</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <h4 class="fw-bold mb-4">Premium Flavors</h4>
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        <div class="col">
+                            <div class="card h-100 border-0 shadow-sm p-2">
+                                <img src="https://www.dominos.com.pk/images/chicken-supreme.png" class="card-img-top rounded" alt="Supreme">
+                                <div class="card-body">
+                                    <h6 class="fw-bold">Chicken Supreme</h6>
+                                    <p class="small text-muted">Tikka & Tex-Mex chunks, sausages, olives, and jalapenos.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                                        <span class="fw-bold text-primary">Rs. 850</span>
+                                        <button class="btn btn-sm btn-danger px-3">ADD</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <footer class="dominos-footer">
         <div class="container py-5">
             <div class="row g-4 text-secondary">
